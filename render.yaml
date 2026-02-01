@@ -1,0 +1,15 @@
+# render.yaml - Deploy to Render.com
+# 1. Push this folder to a GitHub repo
+# 2. Connect to Render.com
+# 3. It will auto-deploy
+
+services:
+  - type: web
+    name: withoutbg-server
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    envVars:
+      - key: PORT
+        value: 5000
+    healthCheckPath: /health
