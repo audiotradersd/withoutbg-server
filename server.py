@@ -16,6 +16,7 @@ import base64
 import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from PIL import Image
 from withoutbg import WithoutBG
 
 app = Flask(__name__)
@@ -54,9 +55,12 @@ def remove_background():
             print("Processing base64 image...")
             image_bytes = io.BytesIO(base64.b64decode(image_base64))
 
+        # Convert to PIL Image (withoutbg expects PIL Image, not BytesIO)
+        pil_image = Image.open(image_bytes)
+
         # Remove background
         print("Removing background...")
-        result = model.remove_background(image_bytes)
+        result = model.remove_background(pil_image)
 
         # Convert to base64 PNG
         output_buffer = io.BytesIO()
