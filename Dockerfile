@@ -1,13 +1,7 @@
 # Dockerfile for withoutbg server
-FROM python:3.11-slim
+FROM python:3.11
 
 WORKDIR /app
-
-# Install system dependencies for image processing
-RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install Python deps
 COPY requirements.txt .
@@ -18,6 +12,9 @@ COPY server.py .
 
 # Expose port
 EXPOSE 5000
+
+# Set port for Railway
+ENV PORT=5000
 
 # Run server
 CMD ["python", "server.py"]
