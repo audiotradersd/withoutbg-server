@@ -31,7 +31,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Pre-load default model at startup
-DEFAULT_MODEL = "birefnet-general"
+DEFAULT_MODEL = "isnet-general-use"
 print(f"Loading rembg model '{DEFAULT_MODEL}' (first run downloads model)...")
 sessions = {}
 sessions[DEFAULT_MODEL] = new_session(DEFAULT_MODEL)
@@ -55,8 +55,6 @@ def health():
         "engine": "rembg",
         "default_model": DEFAULT_MODEL,
         "available_models": [
-            "birefnet-general",
-            "birefnet-general-lite",
             "isnet-general-use",
             "u2net",
             "u2netp",
