@@ -1,4 +1,4 @@
-withoutbg>=1.0.0
+rembg[cpu]>=2.0.50
 flask>=3.0.0
 flask-cors>=4.0.0
 requests>=2.31.0
